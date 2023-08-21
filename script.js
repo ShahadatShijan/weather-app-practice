@@ -3,7 +3,9 @@ let input = search.children[0]
 let button = search.children[1];
 let weather = document.querySelector(".weather")
 
-button.addEventListener("click",()=>{
+
+let app = () =>{
+    weather.innerHTML= '';
     let value = input.value;
     fetch(`https://api.weatherapi.com/v1/current.json?key=%20a19659f5c65f4b8ba2593628232108&q=${value}`)
     .then((res)=>res.json())
@@ -29,7 +31,11 @@ button.addEventListener("click",()=>{
         weather.appendChild(weatherTag);
 
     }
+}
+
+
+document.addEventListener('keypress',(event) =>{
+  if(event.key=="Enter"){
+    app();
+  }
 })
-
-
-
