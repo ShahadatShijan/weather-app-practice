@@ -2,6 +2,13 @@ let search = document.querySelector(".search")
 let input = search.children[0]
 let button = search.children[1];
 let weather = document.querySelector(".weather")
+let title = document.querySelector(".title");
+let time = title.children[1]
+
+const hour = new Date().getHours();
+const minute = new Date().getMinutes();
+const times = `${hour}:${minute}`
+time.innerHTML = times
 
 
 let app = () =>{
@@ -17,10 +24,17 @@ let app = () =>{
         const text = document.createTextNode(data.location.name);
         h3.appendChild(text);
         weather.appendChild(h3);
+        const img = document.createElement('img');
+        img.src = `https://${data.current.condition.icon}`
+        weather.appendChild(img);
         const temp = document.createElement('h3');
-        const tempText = document.createTextNode(data.current.temp_c + '°C');
+        const tempText = document.createTextNode("Temperature : " + data.current.temp_c + '°C');
         temp.appendChild(tempText);
         weather.appendChild(temp);
+        const feel = document.createElement('h3');
+        const feelText = document.createTextNode("FeelsLike : " + data.current.feelslike_c + '°C');
+        feel.appendChild(feelText);
+        weather.appendChild(feel)
         const country = document.createElement('h3');
         const countryText = document.createTextNode('Country: ' + data.location.country);
         country.appendChild(countryText);
